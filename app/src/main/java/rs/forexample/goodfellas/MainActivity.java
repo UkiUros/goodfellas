@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.IoniconsIcons;
 
+import rs.forexample.goodfellas.data.model.Card;
 import rs.forexample.goodfellas.fragments.CreateCardFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private View btnShop;
     private ImageView imgScan;
     private ImageView imgShop;
+    private Card decriptedCard;
 
     CreateCardFragment cardFragment;
 
@@ -29,10 +31,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Bundle extras = getIntent().getExtras();
-        String decriptedCard;
 
         if (extras != null) {
-            decriptedCard = extras.getString(QRScener.CARD_DETAILS);
+            decriptedCard = extras.getParcelable(QRScener.CARD_DETAILS);
         }
 
         btnScan = findViewById(R.id.btnScan);

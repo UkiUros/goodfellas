@@ -13,14 +13,15 @@ public class JsonParser {
         try {
 
             JSONObject card = new JSONObject(cardJson);
-            String cardNumber = card.getString("");
-            String cardName = card.getString("");
-            String cvc = card.getString("");
-            int cardType = card.getInt("");
-            String expirationDate = card.getString("");
-            String ownerName = card.getString("");
-            String cardID = card.getString("");
+            String cardNumber = card.getString("cardNumber");
+            String cardName = card.getString("cardName");
+            String cvc = card.getString("cvc");
+            int cardType = card.getInt("cardType");
+            String expirationDate = card.getString("expirationDate");
+            String ownerName = card.getString("ownerName");
+            String cardID = card.getString("cardId");
 
+            return new Card(cardNumber,cardName,cvc,cardType,expirationDate,ownerName,cardID);
 
         } catch (JSONException e) {
             e.printStackTrace();
