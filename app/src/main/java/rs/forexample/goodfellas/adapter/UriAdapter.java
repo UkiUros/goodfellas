@@ -33,6 +33,11 @@ public class UriAdapter extends RecyclerView.Adapter {
         mOnImageClickedListener = onImageClickedListener;
     }
 
+    public void setData(ArrayList<Uri> images) {
+        mImages = images;
+        notifyDataSetChanged();
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ImageViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_image, parent, false));
@@ -41,7 +46,7 @@ public class UriAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ImageViewHolder imageViewHolder = ((ImageViewHolder) holder);
-       Uri uri = mImages.get(position);
+        Uri uri = mImages.get(position);
         Log.d("Deki", "onBindViewHolder: " + uri);
         File file = new File(uri.toString());
         Picasso.with(imageViewHolder.imageView.getContext()).load(file).resize(100, 100).centerCrop().into(imageViewHolder.imageView);
