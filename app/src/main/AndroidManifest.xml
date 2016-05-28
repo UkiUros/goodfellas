@@ -16,8 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:windowActionBar="false"/>
+            android:screenOrientation="portrait"/>
         <activity android:name=".QRScener"
             android:screenOrientation="portrait"/>
         <activity android:name=".SplashScreen" android:screenOrientation="portrait">
