@@ -14,19 +14,23 @@ import android.widget.Toast;
 
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.IoniconsIcons;
+import com.squareup.picasso.Picasso;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.io.File;
 import java.util.ArrayList;
 
 import rs.forexample.goodfellas.R;
 import rs.forexample.goodfellas.adapter.ImageAdapter;
+import rs.forexample.goodfellas.events.GalleryImageClickedEvent;
 
 /**
  * Created by deki on 28.5.16..
  */
 public class CreateCardFragment extends Fragment {
 
-    RecyclerView recyclerViewFree;
-    RecyclerView recyclerViewPaid;
     TabLayout   bottomTabLayout;
     private ImageView selectedImage;
     private ViewGroup fragmentContainer;
@@ -35,6 +39,7 @@ public class CreateCardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_create_card, container, false );
+        EventBus.getDefault().register(this);
         selectedImage = (ImageView) root.findViewById(R.id.selectedImage);
         selectedImage.setImageResource(R.drawable.card_image_flower);
         fragmentContainer = (ViewGroup) root.findViewById(R.id.fragment_container);
@@ -87,5 +92,12 @@ public class CreateCardFragment extends Fragment {
         android.support.v4.app.FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
         transaction.commitAllowingStateLoss();
+    }
+
+    @Subscribe
+    public void onGalleryClicked(GalleryImageClickedEvent event)
+    {
+        File file = new File(event.getImageUri().toString());
+        Picasso.with(getContext()).load(file).fit().into(selectedImage);
     }
 }
