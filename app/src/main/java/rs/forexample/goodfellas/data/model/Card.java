@@ -13,13 +13,33 @@ public class Card implements Parcelable {
     private String cvc;
     private int cardType;
     private String expirationDate;
+    private String ownerName;
+    private String cardID;
 
-    public Card(String cardNumber, String cardName, String cvc, int cardType, String expirationDate) {
+    public Card(String cardNumber, String cardName, String cvc, int cardType, String expirationDate, String ownerName, String cardID) {
         this.cardNumber = cardNumber;
         this.cardName = cardName;
         this.cvc = cvc;
         this.cardType = cardType;
         this.expirationDate = expirationDate;
+        this.ownerName = ownerName;
+        this.cardID = cardID;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getCardID() {
+        return cardID;
+    }
+
+    public void setCardID(String cardID) {
+        this.cardID = cardID;
     }
 
     public String getCardNumber() {
@@ -62,12 +82,15 @@ public class Card implements Parcelable {
         this.expirationDate = expirationDate;
     }
 
+
     protected Card(Parcel in) {
         cardNumber = in.readString();
         cardName = in.readString();
         cvc = in.readString();
         cardType = in.readInt();
         expirationDate = in.readString();
+        ownerName = in.readString();
+        cardID = in.readString();
     }
 
     @Override
@@ -82,6 +105,8 @@ public class Card implements Parcelable {
         dest.writeString(cvc);
         dest.writeInt(cardType);
         dest.writeString(expirationDate);
+        dest.writeString(ownerName);
+        dest.writeString(cardID);
     }
 
     @SuppressWarnings("unused")
