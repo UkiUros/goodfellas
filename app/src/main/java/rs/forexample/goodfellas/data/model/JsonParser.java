@@ -1,5 +1,7 @@
 package rs.forexample.goodfellas.data.model;
 
+import android.text.TextUtils;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -8,23 +10,24 @@ import org.json.JSONObject;
  */
 public class JsonParser {
 
-    public static Card parseCard(String cardJson){
+    public static Card parseCard(String cardJson) {
 
         try {
 
             JSONObject card = new JSONObject(cardJson);
-            String cardNumber = card.getString("cardNumber");
-            String cvc = card.getString("cvc");
-            int cardType = card.getInt("cardType");
-            String expirationDate = card.getString("expirationDate");
-            String ownerName = card.getString("ownerName");
+            String cardSecureCode = card.getString("cardSecureCode");
 
-            return new Card(cardNumber,"Visa Electron",cvc,cardType,expirationDate,ownerName, "1");
+            if (TextUtils.equals(cardSecureCode, "123456789")) {
+                return new Card("1111 22222222 3333", "Visa Electron", "123", 101, "12/26", "Jon Doe", "1");
+            } else {
+                return null;
+            }
+
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-    return null;
+        return null;
     }
 }
