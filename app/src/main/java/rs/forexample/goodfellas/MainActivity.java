@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         onTabSelected(tabLayout.getTabAt(tabPosition));
     }
 
-
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
 
