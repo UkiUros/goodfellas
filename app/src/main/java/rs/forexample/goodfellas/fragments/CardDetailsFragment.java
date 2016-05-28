@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -17,6 +19,7 @@ import rs.forexample.goodfellas.R;
 import rs.forexample.goodfellas.data.DataProvider;
 import rs.forexample.goodfellas.data.model.Account;
 import rs.forexample.goodfellas.data.model.Card;
+import rs.forexample.goodfellas.events.GalleryImageClickedEvent;
 
 public class CardDetailsFragment extends Fragment {
 
@@ -76,4 +79,6 @@ public class CardDetailsFragment extends Fragment {
 
 
     }
+
+
 }

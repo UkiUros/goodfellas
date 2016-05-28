@@ -1,5 +1,6 @@
 package rs.forexample.goodfellas.fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+
 import rs.forexample.goodfellas.R;
 import rs.forexample.goodfellas.adapter.ImageAdapter;
+import rs.forexample.goodfellas.adapter.UriAdapter;
+import rs.forexample.goodfellas.events.GalleryImageClickedEvent;
 import rs.forexample.goodfellas.utils.Utils;
 
 /**
@@ -20,6 +27,11 @@ import rs.forexample.goodfellas.utils.Utils;
 public class GalleryFragment extends Fragment {
 
     RecyclerView recyclerView;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
@@ -30,14 +42,24 @@ public class GalleryFragment extends Fragment {
         return root;
     }
 
-    private void setupRecyclerView(RecyclerView recyclerView) {
+    private void setupRecyclerView(final RecyclerView recyclerView) {
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 4);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(new ImageAdapter(Utils.fakeData(10), new ImageAdapter.OnImageClickedListener() {
+        Utils.getLocalPictures(getContext(), new Utils.Callback<ArrayList<Uri>>() {
             @Override
-            public void onImageClicked(int image) {
+            public void onResult(ArrayList<Uri> result) {
+                recyclerView.setAdapter(new UriAdapter(result, new UriAdapter.OnImageClickedListener() {
+                    @Override
+                    public void onImageClicked(Uri image) {
+                        EventBus.getDefault().post(new GalleryImageClickedEvent(image));
+                    }
+                }));
+            }
+
+            @Override
+            public void onError() {
 
             }
-        }));
+        });
     }
 }
