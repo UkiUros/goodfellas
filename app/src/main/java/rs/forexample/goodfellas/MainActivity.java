@@ -32,10 +32,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         setContentView(R.layout.activity_main);
 
         Bundle extras = getIntent().getExtras();
-        String decriptedCard;
 
         if (extras != null) {
-            decriptedCard = extras.getString(QRScener.CARD_DETAILS);
+            decriptedCard = extras.getParcelable(QRScener.CARD_DETAILS);
         }
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);

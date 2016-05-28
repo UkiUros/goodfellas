@@ -25,7 +25,7 @@ public class DataProvider {
 
     private static ArrayList<Card> getCards(){
         ArrayList<Card> cards = new ArrayList<>();
-        cards.add(new Card("4844 8778 2779 5030", "VISA", "419", Card.DEBIT_CARD, getExpirationDate()));
+        cards.add(new Card("4844 8778 2779 5030", "VISA", "419", Card.DEBIT_CARD, getExpirationDate(), "Jovan Rudic", "crvena"));
 
         return cards;
     }
