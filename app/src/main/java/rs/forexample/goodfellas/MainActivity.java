@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Maybe we need like view pager and tab layout here with disabled swipe? now we are using relative layouts and imgs to mock the looks
     private void initializeBottomIcons(){
         imgScan = (ImageView) findViewById(R.id.imgScan);
         imgShop = (ImageView) findViewById(R.id.imgShop);
