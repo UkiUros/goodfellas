@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
+import rs.forexample.goodfellas.MainActivity;
 import rs.forexample.goodfellas.QRScener;
 import rs.forexample.goodfellas.R;
 import rs.forexample.goodfellas.data.DataProvider;
@@ -49,6 +50,13 @@ public class CardDetailsFragment extends Fragment {
 
         cardView = (CardView) v.findViewById(R.id.cardView);
         populateCard();
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).startScanner();
+            }
+        });
 
         return v;
     }

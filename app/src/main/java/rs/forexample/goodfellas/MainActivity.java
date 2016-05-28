@@ -16,6 +16,7 @@ import com.joanzapata.iconify.fonts.MaterialIcons;
 import java.util.ArrayList;
 import java.util.List;
 
+import rs.forexample.goodfellas.data.model.Card;
 import rs.forexample.goodfellas.fragments.CardDetailsFragment;
 import rs.forexample.goodfellas.fragments.CreateCardFragment;
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private Card decriptedCard;
 
     private static final int tabIconSize = 50;
 
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setElevation(0);
 
         Bundle extras = getIntent().getExtras();
 
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     }
 
-    private void startScanner(){
+    public void startScanner(){
         Intent intent = new Intent(MainActivity.this, QRScener.class);
         startActivity(intent);
     }
