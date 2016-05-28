@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import rs.forexample.goodfellas.JdeCripter;
+import rs.forexample.goodfellas.MainActivity;
 import rs.forexample.goodfellas.QRScener;
 import rs.forexample.goodfellas.R;
 
@@ -87,6 +89,8 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment  imp
         setRetainInstance(true);
         setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Material_Light_Dialog);
 
+        setCancelable(false);
+
         mInputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         mFingerprintUiHelperBuilder = new FingerprintUiHelper.FingerprintUiHelperBuilder( getActivity().getSystemService(FingerprintManager.class));
     }
@@ -101,6 +105,8 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment  imp
             @Override
             public void onClick(View view) {
                 dismiss();
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
             }
         });
 
