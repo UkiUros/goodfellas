@@ -1,5 +1,6 @@
 package rs.forexample.goodfellas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -27,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Bundle extras = getIntent().getExtras();
+        String decriptedCard;
+
+        if (extras != null) {
+            decriptedCard = extras.getString(QRScener.CARD_DETAILS);
+        }
+
         btnScan = findViewById(R.id.btnScan);
         btnShop = findViewById(R.id.btnShop);
         initializeBottomIcons();
@@ -52,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startScanner(){
-        replaceFragment(cardFragment);
+        Intent intent = new Intent(MainActivity.this, QRScener.class);
+        startActivity(intent);
     }
 
     // I think that this should be improved somehow..I need to sleep now.. Uki
