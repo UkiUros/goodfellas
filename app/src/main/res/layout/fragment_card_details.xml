@@ -7,162 +7,162 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/activity_horizontal_margin">
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:orientation="vertical">
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/activity_horizontal_margin">
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/availableAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
                 android:gravity="center_horizontal"
-                android:textSize="21dp"
-                android:textColor="@color/colorBlack"
                 android:text="2000.00 RSD"
-                android:fontFamily="sans-serif" />
+                android:textColor="@color/colorBlack"
+                android:textSize="21dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
                 android:gravity="center_horizontal"
-                android:textSize="14dp"
                 android:text="Available amount"
-                android:fontFamily="sans-serif" />
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/accountNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="16dp"
-                android:textColor="@color/colorBlack"
-                android:text="101-000101010101-69"
+                android:layout_marginTop="@dimen/small_margin"
                 android:fontFamily="sans-serif"
-                android:layout_marginTop="@dimen/small_margin"/>
+                android:gravity="center_horizontal"
+                android:text="101-000101010101-69"
+                android:textColor="@color/colorBlack"
+                android:textSize="16dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
                 android:gravity="center_horizontal"
-                android:textSize="14dp"
                 android:text="Account number"
-                android:fontFamily="sans-serif" />
+                android:textSize="14dp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/colorGray"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:background="@color/colorGray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/standard_margin"
-                android:paddingRight="@dimen/standard_margin"
                 android:layout_marginTop="@dimen/standard_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/standard_margin"
+                android:paddingRight="@dimen/standard_margin">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:layout_weight="1"
-                    android:textSize="14dp"
-                    android:text="Reserved amount"
                     android:fontFamily="sans-serif"
-                    android:layout_gravity="start"/>
+                    android:text="Reserved amount"
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/reservedAmount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="14dp"
                     android:fontFamily="sans-serif"
-                    android:gravity="end"/>
+                    android:gravity="end"
+                    android:textSize="14dp" />
             </LinearLayout>
 
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.6dp"
-                android:background="@color/colorGray"
-                android:layout_marginTop="@dimen/standard_margin"/>
+                android:layout_marginTop="@dimen/standard_margin"
+                android:background="@color/colorGray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/standard_margin"
-                android:paddingRight="@dimen/standard_margin"
                 android:layout_marginTop="@dimen/standard_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/standard_margin"
+                android:paddingRight="@dimen/standard_margin">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:layout_weight="1"
-                    android:textSize="14dp"
-                    android:text="Last change"
                     android:fontFamily="sans-serif"
-                    android:layout_gravity="start"/>
+                    android:text="Last change"
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/lastChangeAmount"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="14dp"
                     android:fontFamily="sans-serif"
-                    android:gravity="end"/>
+                    android:gravity="end"
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.6dp"
-                android:background="@color/colorGray"
-                android:layout_marginTop="@dimen/standard_margin"/>
+                android:layout_marginTop="@dimen/standard_margin"
+                android:background="@color/colorGray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/standard_margin"
-                android:paddingRight="@dimen/standard_margin"
                 android:layout_marginTop="@dimen/standard_margin"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/standard_margin"
+                android:paddingRight="@dimen/standard_margin">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:layout_weight="1"
-                    android:textSize="14dp"
-                    android:text="Last change date"
                     android:fontFamily="sans-serif"
-                    android:layout_gravity="start"/>
+                    android:text="Last change date"
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/lastChangeDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="14dp"
                     android:fontFamily="sans-serif"
-                    android:gravity="end"/>
+                    android:gravity="end"
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.6dp"
-                android:background="@color/colorGray"
-                android:layout_marginTop="@dimen/standard_margin"/>
+                android:layout_marginTop="@dimen/standard_margin"
+                android:background="@color/colorGray" />
 
         </LinearLayout>
 
