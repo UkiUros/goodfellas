@@ -2,26 +2,29 @@ package rs.forexample.goodfellas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.IoniconsIcons;
+import com.joanzapata.iconify.fonts.MaterialIcons;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import rs.forexample.goodfellas.fragments.CardDetailsFragment;
 import rs.forexample.goodfellas.fragments.CreateCardFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
 
-    private View btnScan;
-    private View btnShop;
-    private ImageView imgScan;
-    private ImageView imgShop;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
-    CreateCardFragment cardFragment;
+    private static final int tabIconSize = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,27 +38,61 @@ public class MainActivity extends AppCompatActivity {
             decriptedCard = extras.getString(QRScener.CARD_DETAILS);
         }
 
-        btnScan = findViewById(R.id.btnScan);
-        btnShop = findViewById(R.id.btnShop);
-        initializeBottomIcons();
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager();
 
-        cardFragment = new CreateCardFragment();
-        replaceFragment(cardFragment);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setOnTabSelectedListener(this);
+        setCurrentTabIconColor(tabLayout.getTabAt(0), 0);
+
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(new IconDrawable(getApplicationContext(), IoniconsIcons.ion_card).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
+        tabLayout.getTabAt(1).setIcon(new IconDrawable(getApplicationContext(), MaterialIcons.md_color_lens).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
+    }
+
+    private void setupViewPager() {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new CardDetailsFragment());
+        adapter.addFragment(new CreateCardFragment());
+        viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(3);
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
+        setCurrentTabIconColor(tab, tab.getPosition());
+    }
+
+//    TODO
+    private void setCurrentTabIconColor(TabLayout.Tab tab, int position) {
+        setupTabIcons();
+        switch (position) {
+            case 0:
+                tab.setIcon(new IconDrawable(getApplicationContext(), IoniconsIcons.ion_card).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
+                break;
+
+            case 1:
+                tab.setIcon(new IconDrawable(getApplicationContext(), MaterialIcons.md_color_lens).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
+                break;
+        }
+    }
+
+    public void switchToTab(int tabPosition){
+        onTabSelected(tabLayout.getTabAt(tabPosition));
+    }
 
 
-        btnScan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startScanner();
-            }
-        });
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
 
-        btnShop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
 
-            }
-        });
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
 
     }
 
@@ -64,23 +101,26 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // I think that this should be improved somehow..I need to sleep now.. Uki
-    private void replaceFragment(Fragment fragment){
-        if (fragment != null){
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, fragment);
-            fragmentTransaction.commit();
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment) {
+            mFragmentList.add(fragment);
         }
     }
 
-    // Maybe we need like view pager and tab layout here with disabled swipe? now we are using relative layouts and imgs to mock the looks
-    private void initializeBottomIcons(){
-        imgScan = (ImageView) findViewById(R.id.imgScan);
-        imgShop = (ImageView) findViewById(R.id.imgShop);
-
-        imgScan.setImageDrawable(new IconDrawable(getApplicationContext(), IoniconsIcons.ion_qr_scanner).sizeDp(30).colorRes(R.color.colorWhite));
-        imgShop.setImageDrawable(new IconDrawable(getApplicationContext(), IoniconsIcons.ion_card).sizeDp(30).colorRes(R.color.colorWhite));
-    }
 }

@@ -21,10 +21,150 @@
             android:orientation="vertical"
             android:layout_marginTop="@dimen/activity_horizontal_margin">
 
+            <TextView
+                android:id="@+id/availableAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="21dp"
+                android:textColor="@color/colorBlack"
+                android:text="2000.00 RSD"
+                android:fontFamily="sans-serif" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="14dp"
+                android:text="Available amount"
+                android:fontFamily="sans-serif" />
+
+            <TextView
+                android:id="@+id/accountNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="16dp"
+                android:textColor="@color/colorBlack"
+                android:text="101-000101010101-69"
+                android:fontFamily="sans-serif"
+                android:layout_marginTop="@dimen/small_margin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="14dp"
+                android:text="Account number"
+                android:fontFamily="sans-serif" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGray"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/standard_margin"
+                android:paddingRight="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="14dp"
+                    android:text="Reserved amount"
+                    android:fontFamily="sans-serif"
+                    android:layout_gravity="start"/>
+
+                <TextView
+                    android:id="@+id/reservedAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="14dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="end"/>
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="@color/colorGray"
+                android:layout_marginTop="@dimen/standard_margin"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/standard_margin"
+                android:paddingRight="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="14dp"
+                    android:text="Last change"
+                    android:fontFamily="sans-serif"
+                    android:layout_gravity="start"/>
+
+                <TextView
+                    android:id="@+id/lastChangeAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="14dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="end"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="@color/colorGray"
+                android:layout_marginTop="@dimen/standard_margin"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/standard_margin"
+                android:paddingRight="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="14dp"
+                    android:text="Last change date"
+                    android:fontFamily="sans-serif"
+                    android:layout_gravity="start"/>
+
+                <TextView
+                    android:id="@+id/lastChangeDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="14dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="end"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="@color/colorGray"
+                android:layout_marginTop="@dimen/standard_margin"/>
 
         </LinearLayout>
-
 
     </LinearLayout>
 
