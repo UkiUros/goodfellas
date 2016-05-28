@@ -57,7 +57,7 @@ public class CardDetailsFragment extends Fragment {
         tvReservedAmount = (TextView) v.findViewById(R.id.reservedAmount);
         tvLastChange = (TextView) v.findViewById(R.id.lastChangeAmount);
         tvLastChangeDate = (TextView) v.findViewById(R.id.lastChangeDate);
-        populateAccount();
+
 
         cardView = (CardView) v.findViewById(R.id.cardView);
         tvCardNumber = (TextView) v.findViewById(R.id.cardNumber);
@@ -93,8 +93,9 @@ public class CardDetailsFragment extends Fragment {
     }
 
     public void populateCard(){
+        populateAccount();
         Card card = getActivity().getIntent().getParcelableExtra(QRScener.CARD_DETAILS);
-
+        vTap.setVisibility(View.GONE);
         tvCardNumber.setText(card.getCardNumber());
         tvCardName.setText(card.getCardName());
         tvCVC.setText(card.getCvc());

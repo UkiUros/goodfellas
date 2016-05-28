@@ -25,13 +25,13 @@ public class JdeCripter {
 
     public static final String pin = "1234567812345678";
 
-    public static byte[] enkripter(String message, Key secret) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidParameterSpecException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
-        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, secret);
-        byte[] cipherText = cipher.doFinal(message.getBytes("UTF-8"));
-        String str =  Base64.encodeToString(cipherText, Base64.NO_WRAP);
-        return cipherText;
-    }
+//    public static byte[] enkripter(String message, Key secret) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidParameterSpecException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
+//        Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+//        cipher.init(Cipher.ENCRYPT_MODE, secret);
+//        byte[] cipherText = cipher.doFinal(message.getBytes("UTF-8"));
+//        String str =  Base64.encodeToString(cipherText, Base64.NO_WRAP);
+//        return cipherText;
+//    }
 
     public static String dekripter(byte[] cipherText, Key secret) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidParameterSpecException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException {
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");

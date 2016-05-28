@@ -14,14 +14,12 @@ public class JsonParser {
 
             JSONObject card = new JSONObject(cardJson);
             String cardNumber = card.getString("cardNumber");
-            String cardName = card.getString("cardName");
             String cvc = card.getString("cvc");
             int cardType = card.getInt("cardType");
             String expirationDate = card.getString("expirationDate");
             String ownerName = card.getString("ownerName");
-            String cardID = card.getString("cardId");
 
-            return new Card(cardNumber,cardName,cvc,cardType,expirationDate,ownerName,cardID);
+            return new Card(cardNumber,"Visa Electron",cvc,cardType,expirationDate,ownerName, "1");
 
         } catch (JSONException e) {
             e.printStackTrace();
