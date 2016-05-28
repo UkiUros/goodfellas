@@ -10,10 +10,7 @@
         android:padding="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
+        <include layout="@layout/card_preview_layout"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:gravity="center_horizontal"
-                android:text="2000.00 RSD"
+                android:text="---.-- ---"
                 android:textColor="@color/colorBlack"
                 android:textSize="21dp" />
 
@@ -46,7 +43,7 @@
                 android:layout_marginTop="@dimen/small_margin"
                 android:fontFamily="sans-serif"
                 android:gravity="center_horizontal"
-                android:text="101-000101010101-69"
+                android:text="xxx-XXXXXXXXX-xx"
                 android:textColor="@color/colorBlack"
                 android:textSize="16dp" />
 

@@ -26,6 +26,14 @@ public class CardDetailsFragment extends Fragment {
     private TextView tvLastChange;
     private TextView tvLastChangeDate;
 
+    private TextView tvCardNumber;
+    private TextView tvCVC;
+    private TextView tvOwner;
+    private TextView tvExpire;
+    private TextView tvCardType;
+    private TextView tvCardName;
+    private View vTap;
+
     private CardView cardView;
 
     public CardDetailsFragment() {
@@ -49,11 +57,21 @@ public class CardDetailsFragment extends Fragment {
         populateAccount();
 
         cardView = (CardView) v.findViewById(R.id.cardView);
-        populateCard();
+        tvCardNumber = (TextView) v.findViewById(R.id.cardNumber);
+        tvCardName = (TextView) v.findViewById(R.id.cardName);
+        tvCVC = (TextView) v.findViewById(R.id.cvc);
+        tvOwner = (TextView) v.findViewById(R.id.owner);
+        tvExpire = (TextView) v.findViewById(R.id.expiration);
+        tvCardType = (TextView) v.findViewById(R.id.type);
+        vTap = v.findViewById(R.id.tap);
+
+        if (getActivity().getIntent().hasExtra(QRScener.CARD_DETAILS))
+            populateCard();
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vTap.setVisibility(View.GONE);
                 ((MainActivity) getActivity()).startScanner();
             }
         });
@@ -71,9 +89,15 @@ public class CardDetailsFragment extends Fragment {
         tvLastChangeDate.setText(new SimpleDateFormat("MMM dd, yyyy", Locale.US).format(acc.getLastChangeDateTime()));
     }
 
-    private void populateCard(){
+    public void populateCard(){
         Card card = getActivity().getIntent().getParcelableExtra(QRScener.CARD_DETAILS);
 
+        tvCardNumber.setText(card.getCardNumber());
+        tvCardName.setText(card.getCardName());
+        tvCVC.setText(card.getCvc());
+        tvOwner.setText(card.getOwnerName());
+        tvExpire.setText(card.getExpirationDate());
+        tvCardType.setText(card.getCardType() == Card.CREDIT_CARD ? "Credit card" : "Debit card");
 
     }
 }

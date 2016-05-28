@@ -32,13 +32,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setElevation(0);
-
-        Bundle extras = getIntent().getExtras();
-
-        if (extras != null) {
-            decriptedCard = extras.getParcelable(QRScener.CARD_DETAILS);
-        }
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager();
@@ -47,6 +40,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setOnTabSelectedListener(this);
         setCurrentTabIconColor(tabLayout.getTabAt(0), 0);
+
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null) {
+            decriptedCard = extras.getParcelable(QRScener.CARD_DETAILS);
+        }
 
     }
 
