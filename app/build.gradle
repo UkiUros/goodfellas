@@ -19,6 +19,11 @@ android {
     }
 }
 
+task copyNativeLibs(type: Copy) {
+    from(new File('libs')) { include '**' }
+    into new File(buildDir, 'native-libs')
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.4.0'
