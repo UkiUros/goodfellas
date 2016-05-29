@@ -29,7 +29,10 @@
             card_view:cardUseCompatPadding="true"
             android:layout_alignBottom="@id/holder"
             android:layout_alignLeft="@id/holder"
-            android:layout_alignRight="@id/holder">
+            android:layout_alignRight="@id/holder"
+            android:layout_alignStart="@id/holder"
+            android:layout_alignEnd="@id/holder"
+            android:layout_alignTop="@id/holder">
 
             <ImageView
                 android:id="@+id/cardBackground"
