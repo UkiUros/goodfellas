@@ -283,6 +283,7 @@ public class QRScener extends Activity {
             Intent i = new Intent(QRScener.this, MainActivity.class);
             i.putExtra(CARD_DETAILS, card);
             startActivity(i);
+            finish();
 
         }
     }
