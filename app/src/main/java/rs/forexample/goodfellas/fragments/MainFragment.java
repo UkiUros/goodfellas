@@ -41,14 +41,14 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setOnTabSelectedListener(this);
-        setCurrentTabIconColor(tabLayout.getTabAt(0), 0);
+        setupTabIcons();
 
         return v;
     }
 
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(R.drawable.credit_card_icon_tab);
-        tabLayout.getTabAt(1).setIcon(R.drawable.palette_ico_tab_inactive);
+        tabLayout.getTabAt(1).setIcon(R.drawable.palette_ico_tab);
     }
 
     private void setupViewPager() {
@@ -62,21 +62,6 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
-        setCurrentTabIconColor(tab, tab.getPosition());
-    }
-
-    //    TODO
-    private void setCurrentTabIconColor(TabLayout.Tab tab, int position) {
-        setupTabIcons();
-        switch (position) {
-            case 0:
-                tab.setIcon(R.drawable.credit_card_icon_tab);
-                break;
-
-            case 1:
-                tab.setIcon(R.drawable.palette_ico_tab);
-                break;
-        }
     }
 
     public void switchToTab(int tabPosition){

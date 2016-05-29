@@ -26,15 +26,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:layout_below="@id/container_toolbar">
+            android:padding="@dimen/activity_horizontal_margin">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                card_view:cardBackgroundColor="@color/colorPrimary"
                 card_view:cardUseCompatPadding="true">
 
                 <RelativeLayout
@@ -48,7 +48,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:text="**** **** **** ****"
-                        android:textSize="20dp"/>
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorWhite"/>
 
                     <TextView
                         android:id="@+id/cardName"
@@ -58,7 +60,8 @@
                         android:layout_alignParentEnd="true"
                         android:text="CARD NAME"
                         android:textSize="21dp"
-                        android:textStyle="italic"/>
+                        android:textStyle="italic"
+                        android:textColor="@color/colorWhite"/>
 
                     <LinearLayout
                         android:id="@+id/cvc_holder"
@@ -74,7 +77,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="CVC"
-                            android:textSize="14dp"/>
+                            android:textSize="14dp"
+                            android:textColor="@color/colorWhite"/>
 
                         <TextView
                             android:id="@+id/cvc"
@@ -82,7 +86,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/small_margin"
                             android:text="***"
-                            android:textSize="14dp"/>
+                            android:textSize="14dp"
+                            android:textColor="@color/colorWhite"/>
 
                     </LinearLayout>
 
@@ -93,14 +98,16 @@
                         android:text="**** ****"
                         android:textSize="16dp"
                         android:layout_alignBottom="@id/cardName"
-                        android:layout_alignTop="@id/cardName"/>
+                        android:layout_alignTop="@id/cardName"
+                        android:textColor="@color/colorWhite"/>
 
                     <TextView
                         android:id="@+id/lbl_digital"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Digital card"
-                        android:textSize="16dp"/>
+                        android:textSize="16dp"
+                        android:textColor="@color/colorWhite"/>
 
 
                     <LinearLayout
@@ -114,7 +121,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Expire"
-                            android:textSize="14dp"/>
+                            android:textSize="14dp"
+                            android:textColor="@color/colorWhite"/>
 
                         <TextView
                             android:id="@+id/expiration"
@@ -122,11 +130,18 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/small_margin"
                             android:text="**/**"
-                            android:textSize="14dp" />
+                            android:textSize="14dp"
+                            android:textColor="@color/colorWhite"/>
 
                     </LinearLayout>
 
                 </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/card_overlay_transparent"
+                    android:scaleType="centerCrop"/>
 
             </android.support.v7.widget.CardView>
 
