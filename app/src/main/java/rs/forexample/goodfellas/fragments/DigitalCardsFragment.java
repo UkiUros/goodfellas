@@ -36,11 +36,11 @@ public class DigitalCardsFragment extends Fragment {
         lv = (ListView) v.findViewById(R.id.listView);
 
 
+
         return v;
     }
 
-
-    private class CardsAdapter extends BaseAdapter {
+    private class CardAdapter extends BaseAdapter {
 
         private TextView tvTitle;
         private ImageView ivIcon;
@@ -49,7 +49,7 @@ public class DigitalCardsFragment extends Fragment {
 
         private LayoutInflater inflater;
 
-        CardsAdapter(Context context, List<Card> cards) {
+        CardAdapter(Context context, List<Card> cards) {
             this.ctx = context;
             this.cards = cards;
 
@@ -76,7 +76,7 @@ public class DigitalCardsFragment extends Fragment {
             View v = convertView;
 
             if (v == null)
-                v = inflater.inflate(R.layout.item_menu, parent, false);
+                v = inflater.inflate(R.layout.item_card, parent, false);
 
 
             return v;
