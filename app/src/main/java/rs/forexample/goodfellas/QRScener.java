@@ -19,6 +19,7 @@ package rs.forexample.goodfellas;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.fingerprint.FingerprintManager;
@@ -78,6 +79,7 @@ public class QRScener extends Activity {
 
     public static final String CARD_DETAILS = "carddetails";
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +114,13 @@ public class QRScener extends Activity {
 
         mFragment = new FingerprintAuthenticationDialogFragment();
 
-        createKey();
+        FingerprintManager fingerprintManager = (FingerprintManager) QRScener.this.getSystemService(Context.FINGERPRINT_SERVICE);
+        if (!fingerprintManager.isHardwareDetected()) {
+            // Device doesn't support fingerprint authentication
+        } else {
+            createKey();
+        }
+
 
         IntentIntegrator integrator = new IntentIntegrator(QRScener.this);
         integrator.initiateScan();
@@ -125,31 +133,38 @@ public class QRScener extends Activity {
             IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
             mScanResult = scanResult;
 
-            if (initCipher()) {
-
-                // Show the fingerprint dialog. The user has the option to use the fingerprint with
-                // crypto, or you can fall back to using a server-side verified password.
-                mFragment.setCryptoObject(new FingerprintManager.CryptoObject(mCipher));
-                boolean useFingerprintPreference = mSharedPreferences
-                        .getBoolean(getString(R.string.use_fingerprint_to_authenticate_key),
-                                true);
-                if (useFingerprintPreference) {
-                    mFragment.setStage(
-                            FingerprintAuthenticationDialogFragment.Stage.FINGERPRINT);
-                } else {
-                    mFragment.setStage(
-                            FingerprintAuthenticationDialogFragment.Stage.PASSWORD);
-                }
+            FingerprintManager fingerprintManager = (FingerprintManager) QRScener.this.getSystemService(Context.FINGERPRINT_SERVICE);
+            if (!fingerprintManager.isHardwareDetected()) {
+                mFragment.setStage(
+                        FingerprintAuthenticationDialogFragment.Stage.PASSWORD);
                 mFragment.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
             } else {
-                // This happens if the lock screen has been disabled or or a fingerprint got
-                // enrolled. Thus show the dialog to authenticate with their password first
-                // and ask the user if they want to authenticate with fingerprints in the
-                // future
-                mFragment.setCryptoObject(new FingerprintManager.CryptoObject(mCipher));
-                mFragment.setStage(
-                        FingerprintAuthenticationDialogFragment.Stage.NEW_FINGERPRINT_ENROLLED);
-                mFragment.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
+                if (initCipher()) {
+
+                    // Show the fingerprint dialog. The user has the option to use the fingerprint with
+                    // crypto, or you can fall back to using a server-side verified password.
+                    mFragment.setCryptoObject(new FingerprintManager.CryptoObject(mCipher));
+                    boolean useFingerprintPreference = mSharedPreferences
+                            .getBoolean(getString(R.string.use_fingerprint_to_authenticate_key),
+                                    true);
+                    if (useFingerprintPreference) {
+                        mFragment.setStage(
+                                FingerprintAuthenticationDialogFragment.Stage.FINGERPRINT);
+                    } else {
+                        mFragment.setStage(
+                                FingerprintAuthenticationDialogFragment.Stage.PASSWORD);
+                    }
+                    mFragment.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
+                } else {
+                    // This happens if the lock screen has been disabled or or a fingerprint got
+                    // enrolled. Thus show the dialog to authenticate with their password first
+                    // and ask the user if they want to authenticate with fingerprints in the
+                    // future
+                    mFragment.setCryptoObject(new FingerprintManager.CryptoObject(mCipher));
+                    mFragment.setStage(
+                            FingerprintAuthenticationDialogFragment.Stage.NEW_FINGERPRINT_ENROLLED);
+                    mFragment.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
+                }
             }
         }
 
