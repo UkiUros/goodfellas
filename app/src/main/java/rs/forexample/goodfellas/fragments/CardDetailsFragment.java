@@ -69,7 +69,6 @@ public class CardDetailsFragment extends Fragment {
         tvOwner = (TextView) v.findViewById(R.id.owner);
         tvExpire = (TextView) v.findViewById(R.id.expiration);
         tvCardType = (TextView) v.findViewById(R.id.type);
-        vTap = v.findViewById(R.id.tap);
         scanCardButton = (ImageView) v.findViewById(R.id.scan_card_button);
 
         if (getActivity().getIntent().hasExtra(QRScener.CARD_DETAILS))
@@ -78,7 +77,6 @@ public class CardDetailsFragment extends Fragment {
         scanCardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vTap.setVisibility(View.GONE);
                 ((MainActivity) getActivity()).startScanner();
             }
         });
