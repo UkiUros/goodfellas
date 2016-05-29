@@ -70,8 +70,11 @@ public class CardDetailsFragment extends Fragment {
         tvCardType = (TextView) v.findViewById(R.id.type);
         scanCardButton = (ImageView) v.findViewById(R.id.scan_card_button);
 
-        if (getActivity().getIntent().hasExtra(QRScener.CARD_DETAILS))
-            populateCard();
+        if (getActivity().getIntent().hasExtra(QRScener.CARD_DETAILS)){
+            //deki slika
+            populateAccount();
+        }
+
 
         scanCardButton.setOnClickListener(new View.OnClickListener() {
             @Override
