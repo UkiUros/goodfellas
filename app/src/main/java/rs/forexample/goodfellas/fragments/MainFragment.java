@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.joanzapata.iconify.IconDrawable;
-import com.joanzapata.iconify.fonts.IoniconsIcons;
 import com.joanzapata.iconify.fonts.MaterialIcons;
 
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ import rs.forexample.goodfellas.R;
 
 public class MainFragment extends Fragment implements TabLayout.OnTabSelectedListener{
 
-    private static final int tabIconSize = 50;
+    private static final int tabIconSize = 100;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
@@ -45,13 +44,13 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setOnTabSelectedListener(this);
-        setCurrentTabIconColor(tabLayout.getTabAt(0), 0);
+        setupTabIcons();
 
         return v;
     }
 
     private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(new IconDrawable(getActivity().getApplicationContext(), IoniconsIcons.ion_card).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
+        tabLayout.getTabAt(0).setIcon(R.drawable.credit_card_icon_tab);
         tabLayout.getTabAt(1).setIcon(new IconDrawable(getActivity().getApplicationContext(), MaterialIcons.md_color_lens).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
     }
 
@@ -66,21 +65,6 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
-        setCurrentTabIconColor(tab, tab.getPosition());
-    }
-
-    //    TODO
-    private void setCurrentTabIconColor(TabLayout.Tab tab, int position) {
-        setupTabIcons();
-        switch (position) {
-            case 0:
-                tab.setIcon(new IconDrawable(getActivity().getApplicationContext(), IoniconsIcons.ion_card).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
-                break;
-
-            case 1:
-                tab.setIcon(new IconDrawable(getActivity().getApplicationContext(), MaterialIcons.md_color_lens).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
-                break;
-        }
     }
 
     public void switchToTab(int tabPosition){
