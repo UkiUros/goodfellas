@@ -10,9 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.joanzapata.iconify.IconDrawable;
-import com.joanzapata.iconify.fonts.MaterialIcons;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,14 +41,14 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
         tabLayout = (TabLayout) v.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setOnTabSelectedListener(this);
-        setupTabIcons();
+        setCurrentTabIconColor(tabLayout.getTabAt(0), 0);
 
         return v;
     }
 
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(R.drawable.credit_card_icon_tab);
-        tabLayout.getTabAt(1).setIcon(new IconDrawable(getActivity().getApplicationContext(), MaterialIcons.md_color_lens).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
+        tabLayout.getTabAt(1).setIcon(R.drawable.palette_ico_tab_inactive);
     }
 
     private void setupViewPager() {
@@ -65,6 +62,21 @@ public class MainFragment extends Fragment implements TabLayout.OnTabSelectedLis
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
+        setCurrentTabIconColor(tab, tab.getPosition());
+    }
+
+    //    TODO
+    private void setCurrentTabIconColor(TabLayout.Tab tab, int position) {
+        setupTabIcons();
+        switch (position) {
+            case 0:
+                tab.setIcon(R.drawable.credit_card_icon_tab);
+                break;
+
+            case 1:
+                tab.setIcon(R.drawable.palette_ico_tab);
+                break;
+        }
     }
 
     public void switchToTab(int tabPosition){
