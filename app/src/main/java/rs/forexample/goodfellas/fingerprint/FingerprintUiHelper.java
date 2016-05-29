@@ -16,7 +16,9 @@
 
 package rs.forexample.goodfellas.fingerprint;
 
+import android.annotation.TargetApi;
 import android.hardware.fingerprint.FingerprintManager;
+import android.os.Build;
 import android.os.CancellationSignal;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ import rs.forexample.goodfellas.R;
 /**
  * Created by Jovan on 5/28/2016.
  */
+@TargetApi(Build.VERSION_CODES.M)
 public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallback {
 
     static final long ERROR_TIMEOUT_MILLIS = 1600;
@@ -68,11 +71,13 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
         mCallback = callback;
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     public boolean isFingerprintAuthAvailable() {
         return mFingerprintManager.isHardwareDetected()
                 && mFingerprintManager.hasEnrolledFingerprints();
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     public void startListening(FingerprintManager.CryptoObject cryptoObject) {
         if (!isFingerprintAuthAvailable()) {
             return;
@@ -80,7 +85,7 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
         mCancellationSignal = new CancellationSignal();
         mSelfCancelled = false;
         mFingerprintManager.authenticate(cryptoObject, mCancellationSignal, 0 /* flags */, this, null);
-        mIcon.setImageResource(R.drawable.ic_fp_40px);
+        mIcon.setImageResource(R.drawable.fingerprint_default);
     }
 
     public void stopListening() {
@@ -114,10 +119,11 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
         showError("Fingerprint not recognized");
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
         mErrorTextView.removeCallbacks(mResetErrorTextRunnable);
-        mIcon.setImageResource(R.drawable.ic_fingerprint_success);
+        mIcon.setImageResource(R.drawable.fingerprint_success);
         mErrorTextView.setTextColor(
                 mErrorTextView.getResources().getColor(R.color.success_color, null));
         mErrorTextView.setText("Success");
@@ -129,8 +135,9 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
         }, SUCCESS_DELAY_MILLIS);
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     private void showError(CharSequence error) {
-        mIcon.setImageResource(R.drawable.ic_fingerprint_error);
+        mIcon.setImageResource(R.drawable.fingerprint_error);
         mErrorTextView.setText(error);
         mErrorTextView.setTextColor(
                 mErrorTextView.getResources().getColor(R.color.warning_color, null));
@@ -144,7 +151,7 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
             mErrorTextView.setTextColor(
                     mErrorTextView.getResources().getColor(R.color.hint_color, null));
             mErrorTextView.setText("Touch sensor");
-            mIcon.setImageResource(R.drawable.ic_fp_40px);
+            mIcon.setImageResource(R.drawable.fingerprint_default);
         }
     };
 

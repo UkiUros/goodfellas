@@ -31,6 +31,7 @@ import android.security.keystore.KeyProperties;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,6 +81,8 @@ public class QRScener extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.layout_qr);
 
         try {
             mKeyStore = KeyStore.getInstance("AndroidKeyStore");
