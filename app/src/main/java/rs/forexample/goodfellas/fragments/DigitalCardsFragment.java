@@ -49,6 +49,7 @@ public class DigitalCardsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 startActivity(new Intent(getActivity(), DigitalCardActivity.class).putExtra(QRScener.CARD_DETAILS, list.get(position)));
+                getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.stay_in_place);
             }
         });
 

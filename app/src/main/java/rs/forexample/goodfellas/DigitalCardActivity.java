@@ -81,8 +81,14 @@ public class DigitalCardActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public void onBackPressed() {
         super.onBackPressed();
+        overridePendingTransition(R.anim.stay_in_place, R.anim.exit_to_right);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        onBackPressed();
         return super.onOptionsItemSelected(item);
     }
 }
