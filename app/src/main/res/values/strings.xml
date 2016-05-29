@@ -24,7 +24,8 @@
     <string name="drawer_close">Close</string>
 
     <string-array name="order_account_fake_accounts">
-        <item>Select Card</item>
-        <item>1234 4567 1234 4567</item>
+        <item>- -</item>
+        <item>1234-456712344567-5698</item>
+        <item>1894-456712347867-0000</item>
     </string-array>
 </resources>
