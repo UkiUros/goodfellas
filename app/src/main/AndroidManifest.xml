@@ -18,7 +18,6 @@
         android:theme="@style/MyMaterialTheme">
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleInstance"
             android:screenOrientation="portrait" />
         <activity
             android:name=".QRScener"
