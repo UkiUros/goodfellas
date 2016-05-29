@@ -1,6 +1,8 @@
 package rs.forexample.goodfellas.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.InterpolatorRes;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -24,6 +26,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.io.File;
 import java.util.ArrayList;
 
+import rs.forexample.goodfellas.CardSubmitActivity;
 import rs.forexample.goodfellas.R;
 import rs.forexample.goodfellas.adapter.ImageAdapter;
 import rs.forexample.goodfellas.adapter.PremiumImageAdapter;
@@ -54,6 +57,13 @@ public class CreateCardFragment extends Fragment {
         fragmentContainer = (ViewGroup) root.findViewById(R.id.fragment_container);
         bottomTabLayout = (TabLayout) root.findViewById(R.id.bottom_tabs);
         buyDesignButton = (Button) root.findViewById(R.id.buy_design_button);
+        buyDesignButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CardSubmitActivity.class);
+                startActivity(intent);
+            }
+        });
         setupBottomTab(bottomTabLayout);
         showFragment(0);
         return root;
