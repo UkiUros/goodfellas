@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class CreateCardFragment extends Fragment {
     TabLayout   bottomTabLayout;
     private ImageView selectedImage;
     private ViewGroup fragmentContainer;
+    private Button buyDesignButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class CreateCardFragment extends Fragment {
         selectedImage = (ImageView) root.findViewById(R.id.cardBackground);
         fragmentContainer = (ViewGroup) root.findViewById(R.id.fragment_container);
         bottomTabLayout = (TabLayout) root.findViewById(R.id.bottom_tabs);
+        buyDesignButton = (Button) root.findViewById(R.id.buy_design_button);
         setupBottomTab(bottomTabLayout);
         showFragment(0);
         return root;

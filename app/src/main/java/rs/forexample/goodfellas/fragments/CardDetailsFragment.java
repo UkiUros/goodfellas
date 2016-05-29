@@ -6,6 +6,8 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -36,8 +38,9 @@ public class CardDetailsFragment extends Fragment {
     private TextView tvCardType;
     private TextView tvCardName;
     private View vTap;
+    private ImageView scanCardButton;
 
-    private CardView cardView;
+    private RelativeLayout cardView;
 
     public CardDetailsFragment() {
         // Required empty public constructor
@@ -59,7 +62,7 @@ public class CardDetailsFragment extends Fragment {
         tvLastChangeDate = (TextView) v.findViewById(R.id.lastChangeDate);
 
 
-        cardView = (CardView) v.findViewById(R.id.cardView);
+        cardView = (RelativeLayout) v.findViewById(R.id.cardView);
         tvCardNumber = (TextView) v.findViewById(R.id.cardNumber);
         tvCardName = (TextView) v.findViewById(R.id.cardName);
         tvCVC = (TextView) v.findViewById(R.id.cvc);
@@ -67,11 +70,12 @@ public class CardDetailsFragment extends Fragment {
         tvExpire = (TextView) v.findViewById(R.id.expiration);
         tvCardType = (TextView) v.findViewById(R.id.type);
         vTap = v.findViewById(R.id.tap);
+        scanCardButton = (ImageView) v.findViewById(R.id.scan_card_button);
 
         if (getActivity().getIntent().hasExtra(QRScener.CARD_DETAILS))
             populateCard();
 
-        cardView.setOnClickListener(new View.OnClickListener() {
+        scanCardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 vTap.setVisibility(View.GONE);
