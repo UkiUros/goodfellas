@@ -89,7 +89,7 @@
                 <Button
                     android:id="@+id/buy_design_button"
                     android:layout_width="120dp"
-                    android:layout_height="52dp"
+                    android:layout_height="48dp"
                     android:text="Buy Design"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentBottom="true"
