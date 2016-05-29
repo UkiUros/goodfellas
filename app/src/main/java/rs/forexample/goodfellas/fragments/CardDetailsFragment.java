@@ -74,6 +74,8 @@ public class CardDetailsFragment extends Fragment {
 
         if (getActivity().getIntent().hasExtra(QRScener.CARD_DETAILS)){
             //deki slika
+            scanCardImage.setImageResource(R.drawable.card_front_validated);
+            scanCardButton.setVisibility(View.GONE);
             populateAccount();
         }
 
