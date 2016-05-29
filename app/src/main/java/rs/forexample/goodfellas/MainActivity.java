@@ -2,45 +2,36 @@ package rs.forexample.goodfellas;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-
-import com.joanzapata.iconify.IconDrawable;
-import com.joanzapata.iconify.fonts.IoniconsIcons;
-import com.joanzapata.iconify.fonts.MaterialIcons;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import rs.forexample.goodfellas.data.model.Card;
-import rs.forexample.goodfellas.fragments.CardDetailsFragment;
-import rs.forexample.goodfellas.fragments.CreateCardFragment;
+import rs.forexample.goodfellas.fragments.DigitalCardsFragment;
+import rs.forexample.goodfellas.fragments.MainFragment;
+import rs.forexample.goodfellas.fragments.SlideMenuFragment;
 
-public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
+public class MainActivity extends AppCompatActivity implements SlideMenuFragment.SlideMenuListener{
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
     private Card decriptedCard;
 
-    private static final int tabIconSize = 50;
+    Toolbar toolbar;
+    private SlideMenuFragment slideMenuFragment;
+
+    Fragment fragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setElevation(0);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        setupViewPager();
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setOnTabSelectedListener(this);
-        setCurrentTabIconColor(tabLayout.getTabAt(0), 0);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Bundle extras = getIntent().getExtras();
 
@@ -48,52 +39,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             decriptedCard = extras.getParcelable(QRScener.CARD_DETAILS);
         }
 
-    }
+        slideMenuFragment = (SlideMenuFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
 
-    private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(new IconDrawable(getApplicationContext(), IoniconsIcons.ion_card).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
-        tabLayout.getTabAt(1).setIcon(new IconDrawable(getApplicationContext(), MaterialIcons.md_color_lens).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
-    }
+        slideMenuFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
+        slideMenuFragment.setDrawerListener(this);
 
-    private void setupViewPager() {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new CardDetailsFragment());
-        adapter.addFragment(new CreateCardFragment());
-        viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(3);
-    }
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        viewPager.setCurrentItem(tab.getPosition());
-        setCurrentTabIconColor(tab, tab.getPosition());
-    }
-
-//    TODO
-    private void setCurrentTabIconColor(TabLayout.Tab tab, int position) {
-        setupTabIcons();
-        switch (position) {
-            case 0:
-                tab.setIcon(new IconDrawable(getApplicationContext(), IoniconsIcons.ion_card).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
-                break;
-
-            case 1:
-                tab.setIcon(new IconDrawable(getApplicationContext(), MaterialIcons.md_color_lens).colorRes(R.color.colorWhite).sizeDp(tabIconSize));
-                break;
-        }
-    }
-
-    public void switchToTab(int tabPosition){
-        onTabSelected(tabLayout.getTabAt(tabPosition));
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
+        displayFragment(3);
 
     }
 
@@ -102,26 +53,30 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         startActivity(intent);
     }
 
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment) {
-            mFragmentList.add(fragment);
-        }
+    @Override
+    public void onMenuItemSelected(View view, int position) {
+        displayFragment(position);
     }
 
+    private void displayFragment(int fragmentPosition){
+
+        switch (fragmentPosition){
+            case 3:
+                if (fragment == null || !(fragment instanceof MainFragment))
+                    fragment = new MainFragment();
+                break;
+
+            case 4:
+                if (fragment == null || !(fragment instanceof DigitalCardsFragment))
+                    fragment = new DigitalCardsFragment();
+                break;
+        }
+
+        if(fragment != null){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.commit();
+        }
+    }
 }
