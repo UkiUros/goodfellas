@@ -22,4 +22,9 @@
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+
+    <string-array name="order_account_fake_accounts">
+        <item>Select Card</item>
+        <item>1234 4567 1234 4567</item>
+    </string-array>
 </resources>

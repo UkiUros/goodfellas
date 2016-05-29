@@ -36,6 +36,7 @@ public class CardDetailsFragment extends Fragment {
     private ImageView scanCardButton;
 
     private RelativeLayout cardView;
+    private ImageView scanCardImage;
 
     public CardDetailsFragment() {
         // Required empty public constructor
@@ -66,9 +67,12 @@ public class CardDetailsFragment extends Fragment {
         tvExpire = (TextView) v.findViewById(R.id.expiration);
         tvCardType = (TextView) v.findViewById(R.id.type);
         scanCardButton = (ImageView) v.findViewById(R.id.scan_card_button);
+        scanCardImage = (ImageView) v.findViewById(R.id.card);
 
         if (getActivity().getIntent().hasExtra(QRScener.CARD_DETAILS)){
             //deki slika
+            scanCardImage.setImageResource(R.drawable.card_front_validated);
+            scanCardButton.setVisibility(View.GONE);
             populateAccount();
         }
 

@@ -132,7 +132,7 @@ public class SlideMenuFragment extends Fragment {
         titles.add("Accounts");
         titles.add("Payments");
         titles.add("Transfers");
-        titles.add("Easy card");
+        titles.add("Cozy card");
         titles.add("Digital cards");
         titles.add("Exchange office");
         titles.add("Calculator");
