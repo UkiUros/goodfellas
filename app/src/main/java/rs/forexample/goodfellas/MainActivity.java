@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 
 import rs.forexample.goodfellas.data.model.Card;
@@ -78,5 +79,12 @@ public class MainActivity extends AppCompatActivity implements SlideMenuFragment
             fragmentTransaction.replace(R.id.container_body, fragment);
             fragmentTransaction.commit();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        DrawerLayout dl = (DrawerLayout) findViewById(R.id.drawer_layout);
+        dl.openDrawer(Gravity.LEFT);
     }
 }
