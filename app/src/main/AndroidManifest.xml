@@ -33,7 +33,9 @@
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".CardSubmitActivity"></activity>
+        <activity android:name=".CardSubmitActivity" />
+        <activity android:name=".DigitalCardActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
