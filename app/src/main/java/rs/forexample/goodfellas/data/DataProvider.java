@@ -13,7 +13,7 @@ import rs.forexample.goodfellas.data.model.User;
 public class DataProvider {
 
     public static User getUser(){
-        return new User(User.FAKE_UKI_ID, "Uros Simic", "Belgrade", "Dedinje bb", "0655737733", getAccounts());
+        return new User(User.FAKE_UKI_ID, "Jovan Rudic", "Belgrade", "Dedinje bb", "0655737733", getAccounts());
     }
 
     private static ArrayList<Account> getAccounts(){
@@ -31,7 +31,7 @@ public class DataProvider {
     }
 
 
-    private static String getExpirationDate(){
+    public static String getExpirationDate(){
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, 2020);
