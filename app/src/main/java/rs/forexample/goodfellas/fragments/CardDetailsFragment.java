@@ -2,6 +2,7 @@ package rs.forexample.goodfellas.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,8 @@ public class CardDetailsFragment extends Fragment {
     private TextView tvCardName;
     private ImageView scanCardButton;
 
+    CardView btnStolen;
+
     private RelativeLayout cardView;
     private ImageView scanCardImage;
 
@@ -57,7 +60,7 @@ public class CardDetailsFragment extends Fragment {
         tvReservedAmount = (TextView) v.findViewById(R.id.reservedAmount);
         tvLastChange = (TextView) v.findViewById(R.id.lastChangeAmount);
         tvLastChangeDate = (TextView) v.findViewById(R.id.lastChangeDate);
-
+        btnStolen = (CardView) v.findViewById(R.id.btnReportStolen);
 
         cardView = (RelativeLayout) v.findViewById(R.id.cardView);
         tvCardNumber = (TextView) v.findViewById(R.id.cardNumber);
@@ -73,7 +76,10 @@ public class CardDetailsFragment extends Fragment {
             //deki slika
             scanCardImage.setImageResource(R.drawable.card_front_validated);
             scanCardButton.setVisibility(View.GONE);
+            btnStolen.setVisibility(View.VISIBLE);
             populateAccount();
+        } else {
+            btnStolen.setVisibility(View.GONE);
         }
 
 
