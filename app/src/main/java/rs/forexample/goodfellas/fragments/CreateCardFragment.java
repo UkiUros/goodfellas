@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,7 +25,9 @@ import java.util.ArrayList;
 
 import rs.forexample.goodfellas.R;
 import rs.forexample.goodfellas.adapter.ImageAdapter;
+import rs.forexample.goodfellas.adapter.PremiumImageAdapter;
 import rs.forexample.goodfellas.events.GalleryImageClickedEvent;
+import rs.forexample.goodfellas.events.PremiumImageClickedEvent;
 
 /**
  * Created by deki on 28.5.16..
@@ -35,13 +38,17 @@ public class CreateCardFragment extends Fragment {
     private ImageView selectedImage;
     private ViewGroup fragmentContainer;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root =  inflater.inflate(R.layout.fragment_create_card, container, false );
-        EventBus.getDefault().register(this);
-        selectedImage = (ImageView) root.findViewById(R.id.selectedImage);
-        selectedImage.setImageResource(R.drawable.card_image_flower);
+        selectedImage = (ImageView) root.findViewById(R.id.cardBackground);
         fragmentContainer = (ViewGroup) root.findViewById(R.id.fragment_container);
         bottomTabLayout = (TabLayout) root.findViewById(R.id.bottom_tabs);
         setupBottomTab(bottomTabLayout);
@@ -99,5 +106,11 @@ public class CreateCardFragment extends Fragment {
     {
         File file = new File(event.getImageUri().toString());
         Picasso.with(getContext()).load(file).fit().into(selectedImage);
+    }
+
+    @Subscribe
+    public void onPremiumImageClicked(PremiumImageClickedEvent event)
+    {
+        Picasso.with(getContext()).load(event.getImageId()).fit().into(selectedImage);
     }
 }

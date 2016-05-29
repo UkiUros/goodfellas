@@ -1,16 +1,11 @@
 package rs.forexample.goodfellas.adapter;
 
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
 import java.util.ArrayList;
 
 import rs.forexample.goodfellas.R;
@@ -18,38 +13,30 @@ import rs.forexample.goodfellas.R;
 /**
  * Created by deki on 28.5.16..
  */
-public class UriAdapter extends RecyclerView.Adapter {
+public class PremiumImageAdapter extends RecyclerView.Adapter {
 
     public interface OnImageClickedListener {
-        void onImageClicked(Uri image);
+        void onImageClicked(int image);
     }
 
-    ArrayList<Uri> mImages;
+    ArrayList<Integer> mImages;
     OnImageClickedListener mOnImageClickedListener;
 
-    public UriAdapter(ArrayList<Uri> imageList, OnImageClickedListener onImageClickedListener)
+    public PremiumImageAdapter(ArrayList<Integer> imageList, OnImageClickedListener onImageClickedListener)
     {
         mImages = imageList;
         mOnImageClickedListener = onImageClickedListener;
     }
 
-    public void setData(ArrayList<Uri> images) {
-        mImages = images;
-        notifyDataSetChanged();
-    }
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ImageViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_image, parent, false));
+        return new ImageViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_premium_image, parent, false));
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ImageViewHolder imageViewHolder = ((ImageViewHolder) holder);
-        Uri uri = mImages.get(position);
-        Log.d("Deki", "onBindViewHolder: " + uri);
-        File file = new File(uri.toString());
-        Picasso.with(imageViewHolder.imageView.getContext()).load(file).resize(100, 100).centerCrop().into(imageViewHolder.imageView);
+        int imageId = mImages.get(position);
+        ((ImageViewHolder) holder).imageView.setImageResource(imageId);
     }
 
 

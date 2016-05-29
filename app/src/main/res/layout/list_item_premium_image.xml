@@ -9,13 +9,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="2dp"
-        android:elevation="8dp">
+        app:cardElevation="8dp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitCenter"/>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:layout_gravity="bottom|right"
+            android:background="@color/colorWhite">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$10"/>
+        </FrameLayout>
     </android.support.v7.widget.CardView>
 
 </FrameLayout>

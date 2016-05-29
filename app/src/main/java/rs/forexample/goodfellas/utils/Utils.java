@@ -18,10 +18,14 @@ public class Utils {
     {
         ArrayList<Integer> ids = new ArrayList<>();
         for (int i = 0; i < number; i++) {
-            if (i % 2 == 0) {
+            if (i % 4 == 3) {
                 ids.add(R.drawable.card_image_flower);
-            } else {
+            } else if (i % 4 == 2){
                 ids.add(R.drawable.card_image_rope);
+            } else if (i % 4 == 1) {
+                ids.add(R.drawable.card_image_beer);
+            } else if (i % 4 == 0) {
+                ids.add(R.drawable.card_image_frut);
             }
         }
         return ids;

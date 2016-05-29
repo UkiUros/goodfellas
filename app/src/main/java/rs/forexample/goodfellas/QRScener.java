@@ -17,10 +17,12 @@
 package rs.forexample.goodfellas;
 
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.fingerprint.FingerprintManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.security.keystore.KeyGenParameterSpec;
@@ -113,6 +115,7 @@ public class QRScener extends Activity {
         integrator.initiateScan();
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 
         if (resultCode == Activity.RESULT_OK) {
@@ -149,7 +152,7 @@ public class QRScener extends Activity {
 
 
 
-//            Kriptovanje
+
 //            byte[] kriptovano = null;
 //            try {
 //                Key pin = JdeCripter.pinGenerator(JdeCripter.pin);
@@ -174,6 +177,7 @@ public class QRScener extends Activity {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     private boolean initCipher() {
         try {
             mKeyStore.load(null);
@@ -192,6 +196,7 @@ public class QRScener extends Activity {
      * Creates a symmetric key in the Android Key Store which can only be used after the user has
      * authenticated with fingerprint.
      */
+    @TargetApi(Build.VERSION_CODES.M)
     public void createKey() {
         // The enrolling flow for fingerprint. This is where you ask the user to set up fingerprint
         // for your flow. Use of keys is necessary if you need to know if the set of
@@ -275,5 +280,8 @@ public class QRScener extends Activity {
     private void showConfirmation(byte[] encrypted) {
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

@@ -30,11 +30,7 @@ import rs.forexample.goodfellas.utils.Utils;
 public class GalleryFragment extends Fragment {
 
     RecyclerView recyclerView;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    private UriAdapter mAdapter;
 
     @Nullable
     @Override
@@ -51,13 +47,25 @@ public class GalleryFragment extends Fragment {
 
         Utils.getLocalPictures(getContext(), new Utils.Callback<ArrayList<Uri>>() {
             @Override
-            public void onResult(ArrayList<Uri> result) {
-                recyclerView.setAdapter(new UriAdapter(result, new UriAdapter.OnImageClickedListener() {
+            public void onResult(final ArrayList<Uri> result) {
+                recyclerView.post(new Runnable() {
                     @Override
-                    public void onImageClicked(Uri image) {
-                        EventBus.getDefault().post(new GalleryImageClickedEvent(image));
+                    public void run() {
+                        mAdapter = new UriAdapter(result, new UriAdapter.OnImageClickedListener() {
+                            @Override
+                            public void onImageClicked(Uri image) {
+                                EventBus.getDefault().post(new GalleryImageClickedEvent(image));
+                            }
+                        });
+                        if (recyclerView.getAdapter() == null) {
+                            recyclerView.setAdapter(mAdapter);
+                        } else {
+                            mAdapter.setData(result);
+                            recyclerView.invalidate();
+                        }
                     }
-                }));
+                });
+
             }
 
             @Override
@@ -67,4 +75,5 @@ public class GalleryFragment extends Fragment {
         });
 
     }
+
 }
