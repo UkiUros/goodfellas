@@ -37,7 +37,6 @@ public class CardDetailsFragment extends Fragment {
     private TextView tvExpire;
     private TextView tvCardType;
     private TextView tvCardName;
-    private View vTap;
     private ImageView scanCardButton;
 
     private RelativeLayout cardView;
@@ -97,7 +96,6 @@ public class CardDetailsFragment extends Fragment {
     public void populateCard(){
         populateAccount();
         Card card = getActivity().getIntent().getParcelableExtra(QRScener.CARD_DETAILS);
-        vTap.setVisibility(View.GONE);
         tvCardNumber.setText(card.getCardNumber());
         tvCardName.setText(card.getCardName());
         tvCVC.setText(card.getCvc());
